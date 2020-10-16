@@ -97,6 +97,14 @@ client.connect(error => {
     });
   });
 
+  app.get('/userOrder', (req, res) => {
+    const queryEmail = req.query.email;
+    orderCollections.find({email: queryEmail})
+    .toArray((error, documents) => {
+      res.send(documents);
+    })
+  })
+
   app.get('/AllServices', (req, res) => {
     serviceCollections.find({})
     .toArray((error, documents) => {
